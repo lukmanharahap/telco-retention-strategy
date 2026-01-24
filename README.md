@@ -30,7 +30,7 @@ Based on EDA (Exploratory Data Analysis), the root causes of churn are:
 ## The Solution
 This project deploys a **Random Forest Classifier** wrapped in a **Streamlit Web App** that serves as a Decision Support System for marketing managers.
 
-**🔗 [Live Demo Link]** *(Add Streamlit link here)*
+**🔗 [Live Demo Link]** *([Dashboard](https://telco-retention-strategy.streamlit.app/))*
 
 ### Key Features
 1.  **Real-Time Risk Scoring:** Inputs customer data to predict Churn Probability.
@@ -56,8 +56,12 @@ This project deploys a **Random Forest Classifier** wrapped in a **Streamlit Web
 
 ### 3. Business Simulation Logic
 The dashboard calculates uplift using the formula:
-$$\text{Net Profit} = (\text{LTV} \times \text{Recall} \times \text{Success Rate}) - (\text{Total Intervention Cost})$$
-*This logic proves that the ML-Targeted strategy outperforms the "Do Nothing" and "Mass Campaign" strategies.*
+$$\text{Net Profit} = (\text{LTV} \times \text{Recall} \times \text{Success Rate}) - (\text{Total Intervention Cost})$$  
+Assume that the retention cost is $65 per customer that reflects 1 month free with a **Success Rate of 50%**, the simulation shows:
+* **Do Nothing Strategy:** Results in a potential loss of **$290,650** due to unmitigated churn.
+* **Mass Campaign Strategy:** Results in a net profit of **$53,740** due to high costs and low precision.
+* **ML-Targeted Strategy:** Results in a net profit of **$62,652**.
+Results indicate that the ML-Targeted Strategy generates an estimated **+$8,912** compared to the Mass Campaign Strategy.
 
 ---
 
