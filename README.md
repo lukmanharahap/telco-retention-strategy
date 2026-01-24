@@ -30,7 +30,7 @@ Based on EDA (Exploratory Data Analysis), the root causes of churn are:
 ## The Solution
 This project deploys a **Random Forest Classifier** wrapped in a **Streamlit Web App** that serves as a Decision Support System for marketing managers.
 
-**[Live Demo Link]** *([Dashboard](https://telco-retention-strategy.streamlit.app/))*
+**🔗 [Live Demo Link]** *(Add Streamlit link here)*
 
 ### Key Features
 1.  **Real-Time Risk Scoring:** Inputs customer data to predict Churn Probability.
