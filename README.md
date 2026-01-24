@@ -59,7 +59,8 @@ $$\text{Net Profit} = (\text{LTV} \times \text{Recall} \times \text{Success Rate
 Assume that the retention cost is $65 per customer that reflects 1 month free with a **Success Rate of 50%**, the simulation shows:
 * **Do Nothing Strategy:** Results in a potential loss of **$290,650** due to unmitigated churn.
 * **Mass Campaign Strategy:** Results in a net profit of **$53,740** due to high costs and low precision.
-* **ML-Targeted Strategy:** Results in a net profit of **$62,652**.  
+* **ML-Targeted Strategy:** Results in a net profit of **$62,652**.
+
 Results indicate that the ML-Targeted Strategy generates an estimated **+$8,912** compared to the Mass Campaign Strategy.
 
 ---
