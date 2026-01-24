@@ -24,7 +24,7 @@ def load_data_and_model():
 df, model, model_columns, scaler = load_data_and_model()
 
 # --- 3. SIDEBAR: INPUT USER ---
-st.sidebar.header("🕵️ Customer Inspector")
+st.sidebar.header("Customer Inspector")
 st.sidebar.markdown(
     "**Instructions:** Adjust customer parameters below to simulate different risk profiles and test intervention outcomes."
 )
@@ -120,7 +120,7 @@ input_ready = preprocess_input(input_df, model_columns, scaler)
 
 # --- 5. MAIN PAGE ---
 # Header
-st.title("📊 Telco Customer Retention Engine")
+st.title("Telco Customer Retention Engine")
 st.markdown(
     """
 This application helps the marketing team identify high-risk customers 
@@ -138,24 +138,23 @@ st.markdown("---")
 col1, col2 = st.columns([2, 1])
 
 with col1:
-    st.subheader("🎯 Risk Assessment")
+    st.subheader("Risk Assessment")
 
     st.sidebar.markdown("---")
-    st.sidebar.subheader("⚙️ Model Settings")
+    st.sidebar.subheader("Model Settings")
     threshold = st.sidebar.slider("Churn Threshold", 0.0, 1.0, 0.5, step=0.05)
     st.sidebar.caption("Adjust the threshold for classifying churn risk.")
 
-    prediction = model.predict(input_ready)[0]
     prediction_proba = model.predict_proba(input_ready)[0][1]
     prediction = 1 if prediction_proba >= threshold else 0
 
     if prediction == 1:
-        st.error(f"⚠️ HIGH RISK CHURN (Probability: {prediction_proba:.1%})")
+        st.error(f"HIGH RISK CHURN (Probability: {prediction_proba:.1%})")
         st.markdown(
             "**Recommendation:** This customer is very likely to churn. Offer incentives immediately."
         )
     else:
-        st.success(f"✅ LOYAL CUSTOMER (Probability: {prediction_proba:.1%})")
+        st.success(f"LOYAL CUSTOMER (Probability: {prediction_proba:.1%})")
         st.markdown(
             "**Recommendation:** Customer is safe. Avoid aggressive retention offers to prevent unnecessary subsidy expenses."
         )
@@ -170,7 +169,7 @@ with col1:
 
     # --- BUSINESS SIMULATION ---
     if prediction == 1:
-        st.subheader("💰 Retention Simulator")
+        st.subheader("Retention Simulator")
         st.markdown("If we offer a retention discount, is our profit safe?")
 
         # Retention Cost Slider
@@ -185,19 +184,19 @@ with col1:
         st.write(f"Intervention Cost: **${cost:.2f}**")
 
         if expected_value > 0:
-            st.success(f"📈 **Projected Net Benefit: +${expected_value:.2f}**")
+            st.success(f"**Projected Net Benefit: +${expected_value:.2f}**")
             st.caption(
                 f"With assumption {success_rate:.0%} customers accepting this offer."
             )
         else:
-            st.error(f"📉 **Projected Net Loss: -${abs(expected_value):.2f}**")
+            st.error(f"**Projected Net Loss: -${abs(expected_value):.2f}**")
             st.caption(
                 "Promotion cost is too high compared to the success probability."
             )
 
 with col2:
-    st.subheader("🔍 Key Risk Drivers")
-    st.markdown("Key factors influencing this prediction:")
+    st.subheader("Key Risk Drivers")
+    st.markdown("Observed risk factors based on historical patterns:")
 
     drivers = []
     if input_df["Contract"].values[0] == "Month-to-month":
@@ -217,7 +216,7 @@ with col2:
         for d in drivers:
             st.markdown(d)
     else:
-        st.markdown("✅ No major risk factors detected.")
+        st.markdown("No major risk factors detected.")
 
     st.markdown("---")
     st.info("ℹ️ **Model Info:** Random Forest Classifier (Recall: ~62%)")
@@ -249,7 +248,6 @@ results = []
 current_prob = prediction_proba
 
 for label, col, val in interventions:
-    # Only simulate if the user does NOT already have that feature
     if input_df[col].values[0] != val:
         new_prob = simulate_intervention(input_df, col, val)
         delta = current_prob - new_prob
@@ -263,7 +261,7 @@ if len(results) > 0:
 
     best_action = results[0]
 
-    st.success(f"🌟 **Main Recommendation:** {best_action[0]}")
+    st.success(f"**Main Recommendation:** {best_action[0]}")
     st.metric(
         label="Potential Risk Reduction",
         value=f"{best_action[1]:.1%}",
@@ -278,5 +276,5 @@ if len(results) > 0:
             )
 else:
     st.info(
-        "✅ This customer already has an optimal configuration (or the risk is already very low)."
+        "This customer already has an optimal configuration (or the risk is already very low)."
     )
